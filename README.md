@@ -1,5 +1,8 @@
 # Data Sovereignty Playbook (Linux-First, NIST-Aligned)
 
+> **Start here:** See `/docs/12-repo-management-playbook.md` for how this repository is intentionally maintained.
+
+
 A practical playbook for individuals (and small teams) who want to reduce reliance on centralized platforms and move toward a more local-first, portable, and governed digital life—without turning it into a fragile hobby.
 
 This repository applies **NIST Cybersecurity Framework (CSF) 2.0** concepts at a personal scale: governance, protect/detect/recover discipline, and explicit tradeoffs.
