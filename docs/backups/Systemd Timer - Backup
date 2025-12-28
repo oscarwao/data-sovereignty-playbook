@@ -1,0 +1,102 @@
+
+---
+
+# 2. Systemd Timer — Safe, Minimal Automation
+
+This gives you **weekly backups**, but only when the drive is present.
+
+---
+
+## Step 1: Create Backup Script
+
+### File:
+
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+BACKUP_MOUNT="/media/$USER/BACKUP_PRIMARY"
+REPO="$BACKUP_MOUNT/restic"
+
+if [ ! -d "$BACKUP_MOUNT" ]; then
+  echo "Backup drive not mounted. Exiting."
+  exit 1
+fi
+
+export RESTIC_REPOSITORY="$REPO"
+export RESTIC_PASSWORD_FILE="/home/$USER/.config/restic/passphrase"
+
+restic backup \
+  /home/$USER/Documents \
+  /home/$USER/Notes
+
+sudo chmod +x /usr/local/bin/restic-backup.sh
+
+## Passphrase handling (recommended)
+
+mkdir -p ~/.config/restic
+chmod 700 ~/.config/restic
+nano ~/.config/restic/passphrase
+chmod 600 ~/.config/restic/passphrase
+
+## Step 2: systemd Service
+
+~/.config/systemd/user/restic-backup.service
+
+
+### File
+
+[Unit]
+Description=Restic Backup (Local)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/restic-backup.sh
+
+## Step 3: systemd Timer
+
+### File
+
+~/.config/systemd/user/restic-backup.timer
+
+---
+
+[Unit]
+Description=Weekly Restic Backup
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
+
+## Step 4: Enable Timer
+
+```bash
+systemctl --user daemon-reload
+systemctl --user enable --now restic-backup.timer
+systemctl --user list-timers
+
+### Expected: Timer listed | Next run scheduled
+
+## Step 5: Manual Test Run
+
+```bash
+
+systemctl --user start restic-backup.service
+
+### Verify
+
+```bash
+restic snapshots
+
+## Automation Exit Criteria : Timer scheduled: Manual run succeeds : Snapshot appears : Failure when drive is absent is clean and obvious
+
+
+
+
+
+
