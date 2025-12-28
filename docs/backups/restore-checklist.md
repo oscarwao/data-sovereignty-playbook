@@ -75,6 +75,13 @@ restic restore latest \
 
 rm -rf /tmp/restore-test
 
+## Related Decisions
+
+- ADR-0003: Fedora Workstation Baseline and Backup Strategy
+
+
+----
+
 ## Exit Criteria
 
 ## All of the following must be true:
