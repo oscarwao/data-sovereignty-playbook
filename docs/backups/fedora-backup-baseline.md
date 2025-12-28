@@ -76,6 +76,10 @@ Example paths (adjust as needed):
 /home/<user>/Notes
 /home/<user>/.config (selectively)
 
+## Related Decisions
+
+- ADR-0003: Fedora Workstation Baseline and Backup Strategy
+
 
 ---------
 ## Encryption & Secrets
