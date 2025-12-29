@@ -18,7 +18,7 @@ Data sovereignty in this repo is not a purity test. It means:
 ## How to use this repo
 - Start with `/docs/00-overview.md`
 - Use `/checklists/` for runnable steps
-- Read `/decisions/` for “why we chose this” (ADRs)
+- Read `/decisions/` for “why I chose this” (ADRs)
 - Follow `/progress/` for implementation notes and lessons learned
 
 ## Structure
