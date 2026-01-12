@@ -4,7 +4,7 @@
 Accepted
 
 ## Date
-[YYYY-MM-DD]
+[2026-01-11]
 
 ## Context
 
