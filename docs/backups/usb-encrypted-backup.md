@@ -22,6 +22,7 @@ vendor-neutral backups aligned with data sovereignty principles.
 - Excludes caches, trash, and build artifacts
 
 ## Directory Structure
+
 /mnt/backup
 ├── snapshots/
 │ └── initial/
