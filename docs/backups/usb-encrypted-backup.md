@@ -1,42 +1,47 @@
 # Encrypted USB Backup – Laptop Baseline
 
-## Purpose
-This backup strategy provides an offline, encrypted, user-controlled backup
-aligned with data sovereignty principles. It avoids vendor lock-in and allows
-full restores using standard Linux tools.
+## Overview
+This document describes the setup and use of an encrypted USB backup
+for a Fedora Linux laptop. The goal is to maintain offline, user-owned,
+vendor-neutral backups aligned with data sovereignty principles.
 
 ## Storage Medium
 - 256 GB USB thumb drive
-- Encrypted using LUKS
+- Full-disk encryption using LUKS
 - Filesystem: ext4
+- Mounted at `/mnt/backup` when unlocked
+
+## Device Mapping
+- Raw device: `/dev/sda`
+- Encrypted mapping: `LAPTOP-BACKUP`
+- Mount point: `/mnt/backup`
 
 ## Backup Scope
-- Home directory (`/home/$USER`)
-- User configuration (`~/.config`)
-- Excludes caches, node_modules, trash
-
-## Backup Method
-- rsync with hard-linked snapshots
-- Incremental backups
-- Human-readable structure
-- No proprietary tooling
+- `/home/$USER`
+- `~/.config`
+- Excludes caches, trash, and build artifacts
 
 ## Directory Structure
 /mnt/backup
 ├── snapshots/
-│ ├── 2026-01-30/
-│ │ ├── home/
-│ │ └── config/
-├── current -> snapshots/2026-01-30
+│ └── initial/
+│ ├── home/
+│ └── config/
+└── meta/
+└── README.txt
 
 
-## Security
-- LUKS full-disk encryption
-- Passphrase stored in password manager
-- Offline by default
+## Restore (High-Level)
+1. Unlock device:
+   ```bash
+   sudo cryptsetup open /dev/sda LAPTOP-BACKUP
+2. Mount
+sudo mount /dev/mapper/LAPTOP-BACKUP /mnt/backup
 
-## Restore
-See: Restore Checklist (included in this document)
+3. Restore files using rsync
 
-## Status
-Active – manual or scheduled runs
+4. Clean Shutdown (Important Habit)
+   ```bash
+   sync
+    sudo umount /mnt/backup
+    sudo cryptsetup close LAPTOP-BACKUP
