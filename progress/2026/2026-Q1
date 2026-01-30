@@ -1,0 +1,28 @@
+# Progress Log — Q1 2026
+
+## Summary
+Brief narrative of what changed this month and why.
+
+## Wins
+ #January
+  - focused on backup, using rsync to run through a few commands, see docs\backups for that information
+
+## Issues / friction
+ #January
+  - several commands to go through for backup, takes a bit to get use to it, but after a few iterations, smooth sailing.
+  
+
+## Decisions made
+ #January
+   - used an exteran Lexar thumb drive, 256 Gig; possibly more than what is needed, but better to be safe.
+  
+- [input info]
+
+## Experiments run
+ #January
+  - working on backup process
+
+## Next focus
+ #January
+  
+
