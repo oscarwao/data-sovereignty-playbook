@@ -15,14 +15,14 @@ Brief narrative of what changed this month and why.
 ## Decisions made
  #January
    - used an exteran Lexar thumb drive, 256 Gig; possibly more than what is needed, but better to be safe.
-  
-- [input info]
+
 
 ## Experiments run
  #January
-  - working on backup process
+  - working on backup process, will want to automate things a bit and setup some schedule
 
 ## Next focus
  #January
+  - automate the process, can be often forgetful to run your backup.
   
 
